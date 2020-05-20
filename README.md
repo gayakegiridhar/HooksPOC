@@ -1,2 +1,0 @@
-# HooksPOC
-Created with CodeSandbox
