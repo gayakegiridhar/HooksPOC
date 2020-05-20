@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
 import NewName from "./NewName";
+import { Table, Divider } from "antd";
+import "antd/dist/antd.css";
+import { Typography } from "antd";
+
+const { Title } = Typography;
 
 const NameList = () => {
   const [details, setdetails] = useState([
@@ -10,13 +15,30 @@ const NameList = () => {
   const addSong = (fName, lName) => {
     setdetails([...details, { fName, lName, id: 0 }]);
   };
+  const columns = [
+    {
+      title: "First Name",
+      dataIndex: "fName",
+      key: "fName"
+    },
+    {
+      title: "Last Name",
+      dataIndex: "lName",
+      key: "lName"
+    }
+  ];
 
   useEffect(() => {
     console.log("USeEffect Run", details);
   });
   return (
     <div className="song-list">
-      <table>
+      <NewName addSong={addSong} />
+      <Divider />
+
+      <Title level={4}>Added information in Table</Title>
+      <Table columns={columns} dataSource={details} />
+      {/* <table>
         <tr>
           <th>First Name</th>
           <th>Last Name</th>
@@ -33,8 +55,7 @@ const NameList = () => {
             })}
           </td>
         </tr>
-      </table>
-      <NewName addSong={addSong} />
+      </table> */}
     </div>
   );
 };

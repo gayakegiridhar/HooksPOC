@@ -1,4 +1,11 @@
 import React, { useState } from "react";
+import { Input, Row, Col, Divider, Button, Typography } from "antd";
+
+const { Title } = Typography;
+const layout = {
+  labelCol: { span: 8 },
+  wrapperCol: { span: 16 }
+};
 
 const NewName = ({ addSong }) => {
   const [fName, setTitle] = useState("");
@@ -11,24 +18,39 @@ const NewName = ({ addSong }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>New Name:</label>
-      <input
-        type="text"
-        value={fName}
-        required
-        onChange={e => setTitle(e.target.value)}
-        placeholder="First Name"
-      />
-      {"     "}
-      <input
-        type="text"
-        value={lName}
-        required
-        onChange={e => setLname(e.target.value)}
-        placeholder="Last Name"
-      />
-      <input type="submit" value="Add Details" />
+    <form onSubmit={handleSubmit} {...layout}>
+      <Title level={3}>Info Form</Title>
+      <Row gutter={[24, 24]}>
+        <Col span={6}>First Name</Col>
+        <Col span={12}>
+          <Input
+            size="large"
+            type="text"
+            value={fName}
+            required
+            onChange={e => setTitle(e.target.value)}
+            placeholder="First Name"
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col span={6}>Last Name</Col>
+        <Col span={12}>
+          <Input
+            size="large"
+            type="text"
+            value={lName}
+            required
+            onChange={e => setLname(e.target.value)}
+            placeholder="Last Name"
+          />
+        </Col>
+      </Row>
+      <Divider />
+
+      <Button type="primary" htmlType="submit">
+        Add Details
+      </Button>
     </form>
   );
 };
