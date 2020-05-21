@@ -16,7 +16,7 @@ const NewName = ({ addSong }) => {
     setTitle(" ");
     setLname(" ");
   };
-
+  // const[count,setCount]=useState(3);
   return (
     <form onSubmit={handleSubmit} {...layout}>
       <Title level={3}>Info Form</Title>
@@ -47,7 +47,8 @@ const NewName = ({ addSong }) => {
         </Col>
       </Row>
       <Divider />
-
+      {/* <p>{count}</p> */}
+      {/* onClick={()=>setCount(count+1)} */}
       <Button type="primary" htmlType="submit">
         Add Details
       </Button>

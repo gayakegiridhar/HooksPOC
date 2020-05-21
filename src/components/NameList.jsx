@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import NewName from "./NewName";
 import { Table, Divider } from "antd";
 import "antd/dist/antd.css";
-import { Typography } from "antd";
+import { Typography, Badge } from "antd";
 
 const { Title } = Typography;
 
@@ -14,7 +14,12 @@ const NameList = () => {
   ]);
   const addSong = (fName, lName) => {
     setdetails([...details, { fName, lName, id: 0 }]);
+    setAge(age + 1);
   };
+  const [age, setAge] = useState(3);
+  useEffect(addsong => {
+    console.log(addsong);
+  });
   const columns = [
     {
       title: "First Name",
@@ -35,9 +40,14 @@ const NameList = () => {
     <div className="song-list">
       <NewName addSong={addSong} />
       <Divider />
+      <Title level={3}>
+        Total Entries in Table{" "}
+        <Badge count={details.length} style={{ backgroundColor: "#0971f1" }} />
+      </Title>
+      {/* <Title level={3}>Added information in Table</Title> */}
 
-      <Title level={4}>Added information in Table</Title>
       <Table columns={columns} dataSource={details} />
+
       {/* <table>
         <tr>
           <th>First Name</th>
