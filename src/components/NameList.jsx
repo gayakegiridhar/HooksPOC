@@ -7,16 +7,12 @@ import { Typography, Badge } from "antd";
 const { Title } = Typography;
 
 const NameList = () => {
-  const [details, setdetails] = useState([
-    { fName: "Girish", lName: "Gayake", id: 1 },
-    { fName: "VVk", lName: "Patil", id: 2 },
-    { fName: "Shri", lName: "Ghorpade", id: 3 }
-  ]);
+  const [details, setdetails] = useState([]);
   const addSong = (fName, lName) => {
     setdetails([...details, { fName, lName, id: 0 }]);
-    setAge(age + 1);
+    setCount(count + 1);
   };
-  const [age, setAge] = useState(3);
+  const [count, setCount] = useState();
   useEffect(addsong => {
     console.log(addsong);
   });
@@ -33,9 +29,6 @@ const NameList = () => {
     }
   ];
 
-  useEffect(() => {
-    console.log("USeEffect Run", details);
-  });
   return (
     <div className="song-list">
       <NewName addSong={addSong} />

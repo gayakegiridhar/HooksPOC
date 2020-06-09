@@ -1,8 +1,7 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import "antd/dist/antd.css";
-import NameList from "./components/NameList";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, Card, Col, Row } from "antd";
+import { useHistory } from "react-router-dom";
 
 const layout = {
   labelCol: {
@@ -20,61 +19,63 @@ const tailLayout = {
 };
 
 const Login = () => {
+  const history = useHistory();
   const onFinish = values => {
     if (values.username === "root" && values.password === "root") {
-      console.log("Success:", values);
-      // return <Redirect to="/nameList" />;
+      history.push("/nameList");
     } else {
-      console.log("Fails:", values);
+      alert("Wrong Username and Password");
     }
   };
 
-  const onFinishFailed = errorInfo => {
-    console.log("Failed:", errorInfo);
-  };
-
   return (
-    <Form
-      {...layout}
-      name="basic"
-      initialValues={{
-        remember: true
-      }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-    >
-      <Form.Item
-        label="Username"
-        name="username"
-        rules={[
-          {
-            required: true,
-            message: "Please input your username!"
-          }
-        ]}
-      >
-        <Input />
-      </Form.Item>
+    <div className="site-card-wrapper">
+      <Row gutter={16}>
+        <Col span={24}>
+          <Card title="Welcome to Login Page">
+            <Form
+              {...layout}
+              name="basic"
+              initialValues={{
+                remember: true
+              }}
+              onFinish={onFinish}
+            >
+              <Form.Item
+                label="Username"
+                name="username"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your username!"
+                  }
+                ]}
+              >
+                <Input />
+              </Form.Item>
 
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: "Please input your password!"
-          }
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
-
-      <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
+              <Form.Item
+                label="Password"
+                name="password"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input your password!"
+                  }
+                ]}
+              >
+                <Input.Password />
+              </Form.Item>
+              <Form.Item {...tailLayout}>
+                <Button type="primary" htmlType="submit">
+                  Submit
+                </Button>
+              </Form.Item>
+            </Form>
+          </Card>
+        </Col>
+      </Row>
+    </div>
   );
 };
 

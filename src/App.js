@@ -5,6 +5,8 @@ import Login from "./login";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 export default function App() {
+  const values = Login();
+  console.log(values, "Login Values");
   return (
     <Router>
       <div className="App">
